@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 
@@ -5,8 +6,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trivia | ClassForum+</title>
-  <link rel="stylesheet" href="trivia.css">
-  <link rel="icon" type="image/png" href="./Imaging-Website-Icons-1.webp">
+  <link rel="stylesheet" href="{% static 'trivia.css' %}">
+  <link rel="icon" type="image/png" href="{% static 'Imaging-Website-Icons-1.webp' %}">
 </head>
 
 <body>
@@ -22,7 +23,7 @@
 
     <button id="nextBtn" onclick="nextQuestion()" disabled>Next</button>
   </div>
-  <script src="./trivia.js"></script>
+  <script src="{% static 'trivia.js' %}"></script>
 </body>
 
 </html>

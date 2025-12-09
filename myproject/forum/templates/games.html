@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,28 +6,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mini Games | ClassForum+</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="./Imaging-Website-Icons-1.webp">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="icon" type="image/png" href="{% static 'Imaging-Website-Icons-1.webp' %}">
 </head>
 
 <body>
   <header>
     <h1>Mini Games</h1>
     <nav>
-      <a href="index.html">Forum</a>
-      <a href="games.html">Mini Games</a>
-      <a href="team.html">Team Blog</a>
+      <a href="{% url 'index' %}">Forum</a>
+      <a href="{% url 'games' %}">Mini Games</a>
+      <a href="{% url 'team' %}">Team Blog</a>
     </nav>
   </header>
 
   <main class="games-grid">
     <div class="game-card">
       <h2>Tic Tac Toe</h2>
-      <a href="#" onclick="location.href='tic_tac_toe.html'">Play</a>
+      <a href="{% url 'tic_tac_toe' %}">Play</a>
     </div>
     <div class="game-card">
       <h2>Trivia</h2>
-      <a href="#" onclick="location.href='trivia.html'">Play</a>
+      <a href="{% url 'trivia' %}">Play</a>
     </div>
   </main>
 

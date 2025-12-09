@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,17 +6,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Team Blog | ClassForum+</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="./Imaging-Website-Icons-1.webp">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="icon" type="image/png" href="{% static 'Imaging-Website-Icons-1.webp' %}">
 </head>
 
 <body>
   <header>
     <h1>Team Progress Blog</h1>
     <nav>
-      <a href="index.html">Forum</a>
-      <a href="games.html">Mini Games</a>
-      <a href="team.html">Team Blog</a>
+      <a href="{% url 'index' %}">Forum</a>
+      <a href="{% url 'games' %}">Mini Games</a>
+      <a href="{% url 'team' %}">Team Blog</a>
     </nav>
   </header>
 
