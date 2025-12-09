@@ -22,11 +22,25 @@
   </header>
 
   <main class="forum">
+    <section class="new-post">
+      <h3>Create a New Post</h3>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Your Name" required>
+        <textarea name="content" placeholder="Write something..." required></textarea>
+        <button type="submit">Post</button>
+      </form>
+    </section>
+
     <h2>Recent Posts</h2>
     <div id="post-container">
       {% for post in posts %}
       <div class="post">
-        <h4>{{ post.username }}</h4>
+        <h4>{{ post.username }}
+          <span style="font-size: 0.6em; color: gray; font-weight: normal;">
+            • {{ post.created_at|timesince }} ago
+          </span>
+        </h4>
         <p>{{ post.content }}</p>
       </div>
       {% endfor %}
@@ -38,16 +52,6 @@
       <textarea id="post-text" placeholder="Write something..."></textarea>
       <button id="post-btn">Post</button>
     </section> -->
-
-    <section class="new-post">
-      <h3>Create a New Post</h3>
-      <form method="POST">
-        {% csrf_token %}
-        <input type="text" name="username" placeholder="Your Name" required>
-        <textarea name="content" placeholder="Write something..." required></textarea>
-        <button type="submit">Post</button>
-      </form>
-    </section>
   </main>
 
   <footer>
