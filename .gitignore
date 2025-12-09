@@ -1,0 +1,13 @@
+# Ignore the virtual environment (This folder is huge and machine-specific)
+venv/
+.venv/
+
+# Ignore the local database (Prevents overwriting your teammates' data)
+db.sqlite3
+
+# Ignore compiled Python files (Junk files)
+__pycache__/
+*.pyc
+
+# Ignore Mac system files
+.DS_Store
