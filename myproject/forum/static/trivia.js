@@ -98,7 +98,7 @@ let score = 0;
 			index++;
 			if (index >= questions.length) {
 				const container = document.querySelector('.trivia-container');
-				container.innerHTML = '<h2>Finished!</h2><p></p>You scored ${score} out of ${questions.length}!<p>You completed the trivia.</p><p><a class="btn" href="/games/">Back to Games</a></p>';
+				container.innerHTML = `<h2>Finished!</h2><p>You scored ${score} out of ${questions.length}!</p><p>You completed the trivia.</p><p><a class="btn" href="/games/">Back to Games</a></p>`;
 				return;
 			}
 			showQuestion();
