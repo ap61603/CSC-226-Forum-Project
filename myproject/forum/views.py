@@ -1,23 +1,21 @@
-from django.shortcuts import render, redirect
-from .models import Post
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Post, ClassSubject
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
-from .forms import CreateUserForm, LoginForm
+from .forms import ClassCreationForm, CreateUserForm, LoginForm
 
 # Create your views here.
 
-def index(request):
-    if request.method == "POST":
-        # This part saves the data when you click 'Post'
-        name = request.POST.get('username')
-        text = request.POST.get('content')
-        if name and text:
-            Post.objects.create(username=name, content=text)
-        return redirect('index')
-
-    # This part gets all posts to show them
-    all_posts = Post.objects.all().order_by('-created_at')
-    return render(request, 'index.html', {'posts': all_posts})
+# def index(request):
+#     if request.method == "POST":
+#         name = request.POST.get('username')
+#         text = request.POST.get('content')
+#         if name and text:
+#             Post.objects.create(username=name, content=text)
+#         return redirect('index')
+    
+#     all_posts = Post.objects.all().order_by('-created_at')
+#     return render(request, 'index.html', {'posts': all_posts})
 
 def games(request):
     return render(request, 'games.html')
@@ -62,5 +60,36 @@ def index(request):
         else:
             return redirect('my_login')
 
-    all_posts = Post.objects.all().order_by('-created_at')
+    all_posts = Post.objects.filter(subject=None).order_by('-created_at')
     return render(request, 'index.html', {'posts': all_posts})
+
+def class_list(request):
+    subjects = ClassSubject.objects.all()
+    return render(request, 'class_list.html', {'subjects': subjects})
+
+def class_detail(request, subject_id):
+    subject = get_object_or_404(ClassSubject, id=subject_id)
+    
+    posts = Post.objects.filter(subject=subject).order_by('-created_at')
+
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            content = request.POST.get('content')
+            Post.objects.create(author=request.user, subject=subject, content=content)
+            return redirect('class_detail', subject_id=subject.id)
+        else:
+            return redirect('my_login')
+
+    return render(request, 'class_detail.html', {'subject': subject, 'posts': posts})
+
+@login_required(login_url='my_login')
+def create_class(request):
+    if request.method == 'POST':
+        form = ClassCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('class_list') # Redirect to the list of all classes
+    else:
+        form = ClassCreationForm()
+    
+    return render(request, 'create_class.html', {'form': form})

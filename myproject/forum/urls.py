@@ -14,4 +14,9 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', views.my_login, name='my_login'),
     path('logout/', views.user_logout, name='user_logout'),
+
+    path('classes/', views.class_list, name='class_list'),
+    path('classes/<int:subject_id>/', views.class_detail, name='class_detail'),
+
+    path('create-class/', views.create_class, name='create_class'),
 ]

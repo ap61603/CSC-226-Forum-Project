@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <title>Create a Class</title>
+</head>
+
+<body>
+  <header class="site-header">
+    <h1 class="logo">ClassForum+</h1>
+    <nav class="main-nav">
+      <a class="nav-link" href="{% url 'class_list' %}">Back to Classes</a>
+    </nav>
+  </header>
+  
+
+  <main style="display: flex; justify-content: center; align-items: center; min-height: 80vh;">
+    <div class="card" style="width: 100%; max-width: 500px; padding: 40px;">
+      <h2 style="text-align: center; color: var(--accent);">Create a New Class</h2>
+
+      <form method="POST" class="new-post">
+        {% csrf_token %}
+
+        <div style="margin-bottom: 15px;">
+          <label style="color: var(--muted); display: block; margin-bottom: 5px;">Class Name</label>
+          {{ form.name }}
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <label style="color: var(--muted); display: block; margin-bottom: 5px;">Description</label>
+          {{ form.description }}
+        </div>
+
+        <button type="submit" class="btn" style="width: 100%;">Create Class</button>
+      </form>
+    </div>
+  </main>
+</body>
+
+</html>

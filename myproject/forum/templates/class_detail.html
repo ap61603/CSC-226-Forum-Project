@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ subject.name }} | ClassForum+</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+  <header class="site-header">
+    <h1 class="logo">{{ subject.name }} Forum</h1>
+    <nav class="main-nav">
+      <a class="nav-link" href="{% url 'class_list' %}">Back to Classes</a>
+    </nav>
+
+    <div class="auth-nav">
+      {% if user.is_authenticated %}
+      <span class="user-greeting">Hello, {{ user.username }}</span>
+      <a class="nav-link" href="{% url 'user_logout' %}">Logout</a>
+      {% else %}
+      <a class="nav-link" href="{% url 'my_login' %}">Login</a>
+      <a class="nav-link" href="{% url 'register' %}">Register</a>
+      {% endif %}
+    </div>
+  </header>
+
+  <main>
+    <div style="text-align: center; margin-bottom: 30px;">
+      <h2 style="color: var(--accent); margin-bottom: 10px;">{{ subject.name }}</h2>
+      <p style="color: var(--muted);">{{ subject.description }}</p>
+    </div>
+
+    <div class="card new-post" style="margin-bottom: 40px;">
+      <h3>Start a Discussion</h3>
+      <form method="POST">
+        {% csrf_token %}
+        <textarea name="content" placeholder="Ask a question or share something about {{ subject.name }}..."
+          required></textarea>
+
+        <button type="submit" class="btn" style="margin-top: 15px;">Post to {{ subject.name }}</button>
+      </form>
+    </div>
+
+    <div class="forum">
+      <h3>Recent Discussions</h3>
+
+      {% for post in posts %}
+      <div class="post">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+          <h4 style="margin: 0; color: var(--accent);">{{ post.author.username }}</h4>
+          <span style="font-size: 0.85rem; color: var(--muted);">{{ post.created_at|timesince }} ago</span>
+        </div>
+
+        <p>{{ post.content }}</p>
+      </div>
+      {% empty %}
+      <div class="card" style="text-align: center; padding: 20px;">
+        <p>No posts in this class yet. Be the first to start the conversation!</p>
+      </div>
+      {% endfor %}
+    </div>
+  </main>
+</body>
+
+</html>
