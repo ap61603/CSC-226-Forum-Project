@@ -11,23 +11,32 @@
 </head>
 
 <body>
-  <header>
-    <h1>Mini Games</h1>
-    <nav>
-      <a href="{% url 'index' %}">Forum</a>
-      <a href="{% url 'games' %}">Mini Games</a>
-      <a href="{% url 'team' %}">Team Blog</a>
+  <header class="site-header">
+    <h1 class="logo">Mini Games</h1>
+    <nav class="main-nav">
+      <a class="nav-link" href="{% url 'index' %}">Forum</a>
+      <a class="nav-link" href="{% url 'games' %}">Mini Games</a>
+      <a class="nav-link" href="{% url 'team' %}">Team Blog</a>
+    </nav>
+    <nav class="auth-nav">
+      {% if user.is_authenticated %}
+      <span class="user-greeting">Hello, {{ user.username }}</span>
+      <a class="nav-link" href="{% url 'user_logout' %}">Logout</a>
+      {% else %}
+      <a class="nav-link" href="{% url 'my_login' %}">Login</a>
+      <a class="nav-link" href="{% url 'register' %}">Register</a>
+      {% endif %}
     </nav>
   </header>
 
   <main class="games-grid">
     <div class="game-card">
       <h2>Tic Tac Toe</h2>
-      <a href="{% url 'tic_tac_toe' %}">Play</a>
+      <a class="btn" href="{% url 'tic_tac_toe' %}">Play</a>
     </div>
     <div class="game-card">
       <h2>Trivia</h2>
-      <a href="{% url 'trivia' %}">Play</a>
+      <a class="btn" href="{% url 'trivia' %}">Play</a>
     </div>
   </main>
 

@@ -11,25 +11,34 @@
 </head>
 
 <body>
+  <header class="site-header">
+    <h1 class="logo">Tic Tac Toe</h1>
+    <nav class="main-nav">
+      <a class="nav-link" href="{% url 'index' %}">Forum</a>
+      <a class="nav-link" href="{% url 'games' %}">Mini Games</a>
+      <a class="nav-link" href="{% url 'team' %}">Team Blog</a>
+    </nav>
+  </header>
+  <main>
+    <div class="game">
+      <h2>Tic Tac Toe</h2>
+      <div id="status">Player X's turn</div>
 
-  <div class="game">
-    <h1>Tic Tac Toe</h1>
-    <div id="status">Player X's turn</div>
+      <div class="board" id="board">
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+      </div>
 
-    <div class="board" id="board">
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
+      <button id="reset" class="btn secondary">Reset Game</button>
     </div>
-
-    <button id="reset">Reset Game</button>
-  </div>
+  </main>
   <script src="{% static 'tic_tac_toe.js' %}"></script>
 </body>
 

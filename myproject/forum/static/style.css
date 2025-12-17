@@ -1,70 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Iceberg&display=swap');
+
+:root {
+  --bg-1: #071020;
+  --bg-2: #081225;
+  --panel: rgba(255, 255, 255, 0.03);
+  --card: rgba(255, 255, 255, 0.04);
+  --accent: #00f0ff;
+  --accent-2: #ff4dff;
+  --muted: #9aa4b2;
+  --glass: rgba(255, 255, 255, 0.06);
+}
+
+/* Global */
+html,
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
-  color: #333;
+  height: 100%;
+}
+
+body {
   margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: #e6eef8;
+  background: radial-gradient(1200px 400px at 10% 10%, rgba(255, 255, 255, 0.02), transparent),
+    linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-bottom: 40px;
 }
 
-header {
-  background-color: #003366;
-  color: white;
-  padding: 1em;
-  text-align: center;
+/* subtle retro grid */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px;
+  pointer-events: none;
+  opacity: 0.06;
+  z-index: 0;
 }
 
-nav a {
-  color: white;
-  margin: 0 10px;
+/* Header */
+.site-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 18px 28px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.04);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  backdrop-filter: blur(4px);
+}
+
+.logo {
+  font-family: 'Press Start 2P', monospace;
+  color: var(--accent-2);
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(255, 77, 255, 0.12), 0 0 18px rgba(0, 240, 255, 0.06);
+}
+
+/* Navigation */
+/* main-nav ensures that the navigation will be centered*/
+.main-nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+}
+
+.auth-nav {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.nav-link {
+  font-family: 'Iceberg', monospace;
+  color: var(--accent);
   text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+  transition: transform 0.15s ease, box-shadow 0.15s;
+  font-weight: 600;
+  font-size: 18px;
 }
 
-nav a:hover {
-  text-decoration: underline;
+.nav-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 240, 255, 0.06);
+  color: white;
 }
 
+.user-greeting {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* Layout */
 main {
-  padding: 20px;
+  padding: 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+  z-index: 1;
 }
+
+/* Card / Panels */
+.card,
+.forum .post,
+.game-card,
+.trivia-card,
+.trivia-container,
+.game {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(3, 6, 23, 0.6), 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
 
 .forum .post {
-  background: white;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  box-shadow: 0 0 5px #ccc;
+  padding: 14px;
+  margin-bottom: 12px;
 }
 
 .new-post {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  max-width: 100%;
 }
 
+.new-post input[type="text"],
+.new-post textarea,
+input,
+textarea,
+select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(0, 0, 0, 0.2);
+  color: #e6eef8;
+  font-size: 14px;
+}
+
+.new-post textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Buttons */
+.btn {
+  /* layout and centering the button */
+  display: inline-block;
+  align-self: center;
+
+  /* size and shape */
+  padding: 12px 24px;
+  border-radius: 30px;
+
+  /* color and text */
+  font-family: 'Iceberg', monospace;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+
+  /* shadow and transitions */
+  box-shadow: 0 6px 18px rgba(0, 240, 255, 0.06), 0 2px 6px rgba(255, 77, 255, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  /* grows slightly instead of just moving up */
+  box-shadow: 0 0 20px rgba(0, 242, 234, 0.4);
+  /* adds a neon glow */
+}
+
+.btn.secondary {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+  color: var(--accent);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Grid for games */
 .games-grid {
   display: flex;
-  justify-content: space-around;
+  gap: 18px;
+  justify-content: center;
   flex-wrap: wrap;
+  margin-top: 18px;
 }
 
 .game-card {
-  background: white;
-  width: 200px;
-  padding: 20px;
-  margin: 10px;
-  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  /* Centers horizontally */
+  align-items: center;
+  /* Centers vertically */
+  flex-direction: column;
+  width: 240px;
+  padding: 40px;
   text-align: center;
-  transition: 0.3s;
+  transition: transform 0.18s;
+
 }
 
-.game-card:hover {
-  transform: scale(1.05);
+.game-card h2 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 18px;
+  color: var(--accent);
+  margin-bottom: 12px;
 }
 
+.game-card .btn {
+  width: 100%;
+}
+
+/* Footer */
 footer {
-  background-color: #003366;
-  color: white;
   text-align: center;
-  padding: 10px;
-  margin-top: 20px;
+  margin-top: 28px;
+  color: var(--muted);
+  font-size: 13px;
+  padding: 24px 0;
+}
+
+/* Responsive */
+@media (max-width:600px) {
+  .site-header {
+    padding: 12px 16px;
+  }
+
+  .logo {
+    font-size: 12px;
+  }
+
+  .nav-link {
+    font-size: 13px;
+    padding: 6px 8px;
+  }
+}
+
+/* Small decorative touches */
+h2,
+h3,
+h4 {
+  color: #dfefff;
+  font-family: 'Iceberg', monospace;
+
+}
+
+p {
+  font-family: 'Iceberg', monospace;
 }

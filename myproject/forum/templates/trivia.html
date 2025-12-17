@@ -11,18 +11,27 @@
 </head>
 
 <body>
+  <header class="site-header">
+    <h1 class="logo">Trivia</h1>
+    <nav class="main-nav">
+      <a class="nav-link" href="{% url 'index' %}">Forum</a>
+      <a class="nav-link" href="{% url 'games' %}">Mini Games</a>
+      <a class="nav-link" href="{% url 'team' %}">Team Blog</a>
+    </nav>
+  </header>
+  <main>
+    <div class="trivia-container">
+      <h2>Trivia Game</h2>
+      <p id="score-display" style="color: var(--accent); font-weight: bold; margin-bottom: 20px;">Score: 0 / 0</p>
+      <p id="question"></p>
 
-  <div class="trivia-container">
-    <h2>Trivia Game</h2>
+      <div id="choices"></div>
 
-    <p id="question"></p>
+      <p id="result"></p>
 
-    <div id="choices"></div>
-
-    <p id="result"></p>
-
-    <button id="nextBtn" onclick="nextQuestion()" disabled>Next</button>
-  </div>
+      <button id="nextBtn" class="btn" onclick="nextQuestion()" disabled>Next</button>
+    </div>
+  </main>
   <script src="{% static 'trivia.js' %}"></script>
 </body>
 

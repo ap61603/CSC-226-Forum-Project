@@ -12,33 +12,34 @@
 </head>
 
 <body>
-  <header>
-    <h1>ClassForum+</h1>
-    <nav>
-      <a href="{% url 'index' %}">Forum</a>
-      <a href="{% url 'games' %}">Mini Games</a>
-      <a href="{% url 'team' %}">Team Blog</a>
+  <header class="site-header">
+    <h1 class="logo">ClassForum+</h1>
+    <nav class="main-nav">
+      <a class="nav-link" href="{% url 'index' %}">Forum</a>
+      <a class="nav-link" href="{% url 'games' %}">Mini Games</a>
+      <a class="nav-link" href="{% url 'team' %}">Team Blog</a>
     </nav>
-    <nav>
+    <nav class="auth-nav">
       {% if user.is_authenticated %}
-      <span style="color:white">Hello, {{ user.username }}</span>
-      <a href="{% url 'user_logout' %}">Logout</a>
+      <span class="user-greeting">Hello, {{ user.username }}</span>
+      <a class="nav-link" href="{% url 'user_logout' %}">Logout</a>
       {% else %}
-      <a href="{% url 'my_login' %}">Login</a>
-      <a href="{% url 'register' %}">Register</a>
+      <a class="nav-link" href="{% url 'my_login' %}">Login</a>
+      <a class="nav-link" href="{% url 'register' %}">Register</a>
       {% endif %}
     </nav>
   </header>
 
   <main class="forum">
     <section class="new-post">
-      <h3>Create a New Post</h3>
-      <form method="POST">
-        {% csrf_token %}
-        <input type="text" name="username" placeholder="Your Name" required>
-        <textarea name="content" placeholder="Write something..." required></textarea>
-        <button type="submit">Post</button>
-      </form>
+      <h2>Create a New Post</h3>
+        <form method="POST">
+          {% csrf_token %}
+          <!-- <input type="text" name="username" placeholder="Your Name" required> -->
+          <textarea name="content" placeholder="Write something..." required></textarea>
+          <div></div>
+          <button id="postBtn" class="btn" type="submit">Post</button>
+        </form>
     </section>
 
     <h2>Recent Posts</h2>

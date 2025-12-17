@@ -11,12 +11,21 @@
 </head>
 
 <body>
-  <header>
-    <h1>Team Progress Blog</h1>
-    <nav>
-      <a href="{% url 'index' %}">Forum</a>
-      <a href="{% url 'games' %}">Mini Games</a>
-      <a href="{% url 'team' %}">Team Blog</a>
+  <header class="site-header">
+    <h1 class="logo">Team Progress Blog</h1>
+    <nav class="main-nav">
+      <a class="nav-link" href="{% url 'index' %}">Forum</a>
+      <a class="nav-link" href="{% url 'games' %}">Mini Games</a>
+      <a class="nav-link" href="{% url 'team' %}">Team Blog</a>
+    </nav>
+    <nav class="auth-nav">
+      {% if user.is_authenticated %}
+      <span class="user-greeting">Hello, {{ user.username }}</span>
+      <a class="nav-link" href="{% url 'user_logout' %}">Logout</a>
+      {% else %}
+      <a class="nav-link" href="{% url 'my_login' %}">Login</a>
+      <a class="nav-link" href="{% url 'register' %}">Register</a>
+      {% endif %}
     </nav>
   </header>
 
@@ -47,7 +56,8 @@
 
       <article>
         <h3>Step 4: Backend & Database Integration</h3>
-        <p>We focused on enabling persistent storage for the forum posts by transitioning our project to a Django backend.
+        <p>We focused on enabling persistent storage for the forum posts by transitioning our project to a Django
+          backend.
           After facing compatibility issues with Flask we successfully restructured the project by organizing HTML files
           into a 'templates' directory and moving CSS and JavaScript to a 'static' directory. We also configured the
           local database and updated the README with clear instructions so anyone can run the server locally.</p>

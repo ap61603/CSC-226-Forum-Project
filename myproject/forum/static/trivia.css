@@ -1,81 +1,103 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
-  color: #333;
-  margin: 0;
+@import url('style.css');
+
+main {
   display: flex;
   justify-content: center;
+  align-items: flex-start;
+  padding-top: 60px;
 }
+
 
 .trivia-container {
-  background: white;
-  width: 350px;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px #ccc;
+  width: 100%;
+  max-width: 500px;
+
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 40px;
   text-align: center;
-  margin-top: 120px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
-h2 {
+
+.trivia-container h2 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 16px;
+  color: var(--accent-2);
+  /* Magenta for title */
   margin-top: 0;
-  color: #003366;
-  font-size: 26px;
-  display: flex;
-  justify-content: center;
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px rgba(255, 77, 255, 0.3);
+  line-height: 1.5;
 }
 
 #question {
-  font-size: 20px;
-  font-weight: bold;
-  margin: 20px 0;
-  color: #003366;
+  font-family: 'Iceberg', monospace;
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 30px;
+  color: #e6eef8;
+  min-height: 60px;
+  /* Keeps layout stable */
 }
 
 #choices {
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 25px;
 }
 
 #choices button {
   width: 100%;
-  background: #eef4ff;
-  border: 2px solid #003366;
+  padding: 16px;
   border-radius: 8px;
-  padding: 10px;
-  margin: 6px 0;
+
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  color: #ffffff;
+
+  font-family: 'Inter', sans-serif;
   font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.2s ease;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
 }
 
 #choices button:hover {
-  background: #dfe9ff;
-  transform: scale(1.02);
+  background: rgba(0, 240, 255, 0.2);
+  /* brighter cyan on hover */
+  border-color: #00f0ff;
+  color: white;
+  transform: translateX(5px);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
 }
 
 #result {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 15px;
-  color: #003366;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  min-height: 20px;
+  margin-bottom: 20px;
+  color: var(--accent);
 }
 
 #nextBtn {
-  background-color: #003366;
-  color: white;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: 0.3s;
+  width: 100%;
+  font-family: 'Iceberg', monospace;
+  font-size: 18px;
+  padding: 14px;
 }
 
 #nextBtn:disabled {
-  background-color: #7a8ca8;
-  cursor: default;
-}
-
-#nextBtn:hover:not(:disabled) {
-  background-color: #004a99;
+  background: var(--glass);
+  color: rgba(255, 255, 255, 0.2);
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
 }
